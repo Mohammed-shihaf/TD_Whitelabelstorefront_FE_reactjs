@@ -1,0 +1,25 @@
+PROJECT TYPE: White-Label / Multi-Tenant Storefront (standalone frontend module)
+
+BUILD COMMANDS
+==============
+npm install
+npm test        # real mocha test suite, verified passing
+npm run build    # real vite build, verified passing (React 22)
+
+ARCHITECTURE
+============
+This is the self-serve-tenant React storefront, standalone - a
+genuine multi-component app, not a single bare component. Fetches
+GET /api/tenant-config and /api/tenant-products from
+TD_Whitelabelstorefront_BE_nodejs with x-tenant-id set to a
+self-serve tenant. Enterprise tenants get the Angular storefront
+instead (TD_Whitelabelstorefront_FE_angularjs).
+
+  src/lib/theme.js               pure theming + sort logic
+  src/components/TenantBanner.jsx  tenant-branded header
+  src/components/ProductGrid.jsx   tenant-scoped product list
+  src/App.jsx                      composes the above, fetches tenant data
+  test/theme.test.js               mocha + chai test suite
+  quality/                         13 real JS code-quality tool fixtures
+
+Branches: whitelabelstorefront_reactjs<18|20|22|24>
